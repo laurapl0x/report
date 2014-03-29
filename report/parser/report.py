@@ -30,6 +30,10 @@ class Report:
         except urllib2.HTTPError:
             print "HTTP Error Occurred"
     
+    def split(self):
+        '''splits the json file into its different sections'''
+        
+    
     def setTime(self, size=0):
         '''set the objects time'''
         time = time.strftime("%a, %d %b %Y %H:%M:%S +0000", time.localtime(['datapoints'][size][1]))
