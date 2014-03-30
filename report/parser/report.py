@@ -32,7 +32,9 @@ class Report:
     
     def split(self):
         '''splits the json file into its different sections'''
-        
+        sections = dictionary
+        for each_line in self._data:
+            sections.append(each_line)
     
     def setTime(self, size=0):
         '''set the objects time'''
