@@ -15,8 +15,13 @@ class Report:
     
     def __init__(self):
         '''initialise the object'''
+        self.section = {}
         self._data = self.getData()
-        #self.size = self.getSize()
+        self.split()
+        self.printSection('SLA timeout')
+        self.printSection('Empty Responses')
+        #self.size = self.getSize('SLA timeout')
+        #print self.size
         #self._start_time = self.setTime()
         #self._end_time = self.setTime(self.size)
         
@@ -32,20 +37,25 @@ class Report:
     
     def split(self):
         '''splits the json file into its different sections'''
-        #sections = dictionary
-        # each_line in self._data:
-            #sections.append(each_line)
+        for each_section in self._data:
+            self.section.update({each_section['target']:each_section['datapoints']})
+    
+    def printSection(self, section):
+        print section + ": " + str(self.section[section])
+    
+    def getSize(self, section):
+        '''returns the size of the section'''
+        size = len(section)
+        return size
     
     def setTime(self, size=0):
         '''set the objects time'''
-        time = time.strftime("%a, %d %b %Y %H:%M:%S +0000", time.localtime(['datapoints'][size][1]))
+        time = time.strftime("%a, %d %b %Y %H:%M:%S +0000", time.localtime(['section'][size][1]))
         return time
-    '''
-    def getSize(self):
-        return the size of the section
-        size = len(self._data['datapoints'])
-        return size
-    '''
+
+
+
+
     def calculateAverages(self):
         '''Calculates the average value of occurrences'''
         for each_line in self._data:
