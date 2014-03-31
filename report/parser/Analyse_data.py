@@ -6,7 +6,7 @@ Created on 29 Mar 2014
 '''
 
 def calculateAverages(section, report):
-    '''Calculates the average value of occurrences in specified section'''
+    '''Calculates the average value of occurrences in the specified section'''
     total = 0
     for counter in range(report.size):
         total += report.sections[section][counter][0]

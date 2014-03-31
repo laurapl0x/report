@@ -11,10 +11,11 @@ import urllib2
 import time
 
 class Report:
-    '''reports on SLA timeout, Empty Responses, Bid Response, Error Responses, Internal Errors, Total DSP Requests and Unmatched requests'''
+    '''takes in json data and creates a report instance of it then breaks the report into its seperate sections so they can be compared and analysed
+    reports on SLA timeout, Empty Responses, Bid Response, Error Responses, Internal Errors, Total DSP Requests and Unmatched requests'''
     
     def __init__(self):
-        '''initialise the object'''
+        '''initialise the report object'''
         self.sections = {}
         self._data = self.getData()
         self.split()
@@ -33,19 +34,20 @@ class Report:
             print "HTTP Error Occurred"
     
     def split(self):
-        '''splits the json file into its different sections'''
+        '''splits the json file into its different sections, creating a dictionary representation of each section'''
         for each_section in self._data:
             self.sections.update({each_section['target']:each_section['datapoints']})
             
     def printSection(self, sections):
+        '''print out the sections name and all the data points it contains'''
         print sections + ": " + str(self.sections[sections])
     
     def getSize(self, sections):
-        '''returns the size of the sections'''
+        '''returns the amount of data points in the specified section'''
         size = len(self.sections[sections])
         return size
     
     def setTime(self, size=0, sections=None):
-        '''set the objects time'''
+        '''set the reporting time'''
         return_time = time.strftime("%a, %d %b %Y %H:%M:%S +0000", time.localtime(sections[size][1]))
         return return_time
