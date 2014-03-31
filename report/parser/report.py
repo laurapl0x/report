@@ -20,8 +20,10 @@ class Report:
         self.split()
         self.printSection('SLA timeout')
         self.printSection('Empty Responses')
-        #self.size = self.getSize('SLA timeout')
-        #print self.size
+        self.size = self.getSize('SLA timeout')
+        print ' '
+        print 'the amount of elements in each section is: ' + str(self.size)
+        print ' '
         #self._start_time = self.setTime()
         #self._end_time = self.setTime(self.size)
         
@@ -45,51 +47,14 @@ class Report:
     
     def getSize(self, section):
         '''returns the size of the section'''
-        size = len(section)
+        size = len(self.section[section])
         return size
     
     def setTime(self, size=0):
         '''set the objects time'''
-        time = time.strftime("%a, %d %b %Y %H:%M:%S +0000", time.localtime(['section'][size][1]))
-        return time
+        return_time = time.strftime("%a, %d %b %Y %H:%M:%S +0000", time.localtime(['section'][size][1]))
+        return return_time
 
-
-
-
-    def calculateAverages(self):
-        '''Calculates the average value of occurrences'''
-        for each_line in self._data:
-            total = 0
-            size = len(each_line['datapoints'])
-            for counter in range(size):
-                total += each_line['datapoints'][counter][0]
-                avg = total / size
-            print each_line['target'] + " average value is: " + str(avg) + " and the total value is: " + str(total)
-    
-    def findMins(self):
-        '''find the minimum value in each section'''
-        for each_line in self._data:
-            size = len(each_line['datapoints'])
-            for counter in range(size):
-                value = each_line['datapoints'][counter][0]
-                if counter == 0:
-                    minimum = value
-                elif minimum > value:
-                    minimum = value
-            print each_line['target'] + " minimum value = " + str(minimum)
-    
-    def findMaxs(self):
-        '''find the maximum value in each section'''
-        for each_line in self._data:
-            size = len(each_line['datapoints'])
-            for counter in range(size):
-                value = each_line['datapoints'][counter][0]
-                if counter == 0:
-                    maximum = value
-                elif maximum < value:
-                    maximum = value
-            print each_line['target'] + " maximum value = " + str(maximum)
-            
 report = Report()      
 report.calculateAverages()
 print ""
