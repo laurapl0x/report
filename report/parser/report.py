@@ -11,19 +11,16 @@ import urllib2
 import time
 
 class Report:
-    '''reports on SLA timeouts, Empty Responses, Bid Responses, Error Responses, Internal Errors, Total DSP Requests and Unmatched requests'''
+    '''reports on SLA timeout, Empty Responses, Bid Response, Error Responses, Internal Errors, Total DSP Requests and Unmatched requests'''
     
     def __init__(self):
         '''initialise the object'''
-        self.section = {}
+        self.sections = {}
         self._data = self.getData()
         self.split()
-        self.printSection('SLA timeout')
-        self.printSection('Empty Responses')
         self.size = self.getSize('SLA timeout')
-        print ' '
-        print 'the amount of elements in each section is: ' + str(self.size)
-        print ' '
+        self.start_time = self.setTime(0, self.sections['SLA timeout'])
+        self.end_time = self.setTime(self.size - 1, self.sections['SLA timeout'])
         
     def getData(self):
         '''open the URL and returns a dictionary representation of the object'''
@@ -38,26 +35,17 @@ class Report:
     def split(self):
         '''splits the json file into its different sections'''
         for each_section in self._data:
-            self.section.update({each_section['target']:each_section['datapoints']})
+            self.sections.update({each_section['target']:each_section['datapoints']})
+            
+    def printSection(self, sections):
+        print sections + ": " + str(self.sections[sections])
     
-    def printSection(self, section):
-        print section + ": " + str(self.section[section])
-    
-    def getSize(self, section):
-        '''returns the size of the section'''
-        size = len(self.section[section])
+    def getSize(self, sections):
+        '''returns the size of the sections'''
+        size = len(self.sections[sections])
         return size
     
-    def setTime(self, size=0):
+    def setTime(self, size=0, sections=None):
         '''set the objects time'''
-        return_time = time.strftime("%a, %d %b %Y %H:%M:%S +0000", time.localtime(['section'][size][1]))
+        return_time = time.strftime("%a, %d %b %Y %H:%M:%S +0000", time.localtime(sections[size][1]))
         return return_time
-
-        time = time.strftime("%a, %d %b %Y %H:%M:%S +0000", time.localtime(['section'][size][1]))
-        return time
-
-
-
-   
-report = Report()      
-
