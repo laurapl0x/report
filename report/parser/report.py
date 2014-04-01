@@ -11,7 +11,7 @@ import urllib2
 import time
 
 class Report:
-    '''takes in json data and creates a report instance of it then breaks the report into its seperate sections so they can be compared and analysed
+    '''takes in json data and breaks it into separate sections so they can be compared and analysed, allows printing of sections in full, getting the length of the report and setting the start and end times of the report
     reports on SLA timeout, Empty Responses, Bid Response, Error Responses, Internal Errors, Total DSP Requests and Unmatched requests'''
     
     def __init__(self):
@@ -49,7 +49,7 @@ class Report:
     
     def setTime(self, size=0, sections=None):
         '''set the reporting time'''
-        return_time = time.strftime("%a, %d %b %Y %H:%M:%S", time.localtime(sections[size][1]))
+        return_time = time.strftime("%a, %d %b %Y %H:%M:%S +0000", time.localtime(sections[size][1]))
         return return_time
     
 

@@ -61,7 +61,7 @@ def getPointPercentage(section, section1, report, point=0, min_limit=None, max_l
     value = report.sections[section][point][0]
     value2 = report.sections[section1][point][0]
     percent = value / value2 * 100
-    print 'The percentage for point ' + str(point + 1) + ' out of ' + str(section) + ' and ' + str(section1) + ' is: ' + str(percent) + '% at ' + time.strftime("%a, %d %b %Y %H:%M:%S", time.localtime(report.sections[section][point][0]))
+    print 'The percentage for point ' + str(point + 1) + ' out of ' + str(section) + ' and ' + str(section1) + ' is: ' + str(percent) + '% at ' + time.strftime("%a, %d %b %Y %H:%M:%S +0000", time.localtime(report.sections[section][point][1]))
     checkLimits(section, section1, percent, min_limit, max_limit)
     return percent
 
