@@ -7,7 +7,6 @@ Created on 28 Mar 2014
 '''
 
 import json
-import urllib2
 import time
 
 class Report:
@@ -26,7 +25,7 @@ class Report:
     def getData(self):
         '''open the URL and returns a dictionary representation of the object'''
         try:
-            json_data = open('C:\Users\darrendirl\Downloads\json script')
+            json_data = open('C:\Users\darrendirl\Downloads\json script') ############################change this to your downloads directory###################
             data = json.load(json_data)
             return data
         except:
