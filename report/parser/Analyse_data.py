@@ -6,14 +6,12 @@ Created on 29 Mar 2014
 '''
 
 def calculateAverages(section, report):
-    ###
     '''Calculates the average value of occurrences in the specified section'''
     total = getTotal(section, report)
     avg = total / report.size
     print section + " average value is: " + str(avg)
 
 def getTotal(section, report):
-    ###
     '''Calculates and returns the total value of occurrences in the specified section'''
     total = 0
     for counter in range(report.size):
@@ -41,7 +39,6 @@ def findMaxs(section, report):
     print section + " maximum value = " + str(maximum)
           
 def getPercentage(section, section1, report):
-    ###
     '''returns the percentage of one section compared with another section'''
     total1 = getTotal(section, report)
     total2 = getTotal(section1, report)

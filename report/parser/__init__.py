@@ -8,6 +8,8 @@ Created on 31 Mar 2014
 from report import Report
 import Analyse_data
 
+
+
 report = Report()
 report.printSection('SLA timeout')
 
@@ -34,5 +36,7 @@ Analyse_data.findMins('Error Responses', report)
 Analyse_data.findMins('Internal Errors', report)
 Analyse_data.findMins('Total DSP Requests', report)
 Analyse_data.findMins('Unmatched requests', report)
+print ' '
 
+print "SLA timeout is " + str(Analyse_data.getPercentage('SLA timeout', 'Error Responses', report)) + "% of Error Responses"
 
