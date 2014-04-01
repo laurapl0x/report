@@ -49,7 +49,7 @@ class Report:
     
     def setTime(self, size=0, sections=None):
         '''set the reporting time'''
-        return_time = time.strftime("%a, %d %b %Y %H:%M:%S +0000", time.localtime(sections[size][1]))
+        return_time = time.strftime("%a, %d %b %Y %H:%M:%S", time.localtime(sections[size][1]))
         return return_time
     
 

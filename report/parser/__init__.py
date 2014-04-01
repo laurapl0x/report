@@ -29,7 +29,8 @@ print 'at ' + str(Analyse_data.checkAveragePercentage('Empty Responses', 'Total 
 
 print ' '
 
-Analyse_data.getPointPercentage('Empty Responses', 'Total DSP Requests', report, 8)
-
+Analyse_data.getPointPercentage('Empty Responses', 'Total DSP Requests', report, 1, 10, 30)
+Analyse_data.getPointPercentage('Empty Responses', 'Total DSP Requests', report, 50, 10, 30)
+Analyse_data.getPointPercentage('Empty Responses', 'Total DSP Requests', report, 144, 10, 30)
 
 
