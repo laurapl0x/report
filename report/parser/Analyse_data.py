@@ -45,26 +45,34 @@ def getPercentage(section, section1, report):
     total2 = getTotal(section1, report)
     return ((total1 / total2) * 100)
 
-def checkAveragePercentage(section, section1, report, min_limit, max_limit):
+def checkAveragePercentage(section, section1, report, min_limit=None, max_limit=None):
     '''check the percentage of section out of section1'''
-    total = getPercentage(section, section1, report)
-    if total > max_limit:
-        print 'The average percentage of ' + str(section) + ' out of ' + str(section1) + ' is exceeding the normal range'
-    elif total < min_limit:
-        print 'The average percentage of ' + str(section) + ' out of ' + str(section1) + ' is below the normal range'
-    else:
-        print 'The average percentage of ' + str(section) + ' out of ' + str(section1) + ' is within the normal range'
-    return total
+    percent = getPercentage(section, section1, report)
+    checkLimits(section, section1, percent, min_limit, max_limit)
+    return percent
     
-def getPointPercentage(section, section1, report, point=0):
+def getPointPercentage(section, section1, report, point=0, min_limit=None, max_limit=None):
     '''checks the levels of percentages for a point, taking point in as index 0 but displaying back as index 1'''
-    if point != 0:
+    if point > report.size:
+        print 'The point was out of range, so we changed it to the last point instead'
+        point = report.size - 1
+    elif point != 0:
         point = point - 1
     value = report.sections[section][point][0]
     value2 = report.sections[section1][point][0]
-    print 'The percentage for point ' + str(point) + ' out of ' + str(section) + ' and ' + str(section1) + ' is: ' + str(value / value2 * 100) + '% at ' + time.strftime("%a, %d %b %Y %H:%M:%S +0000", time.localtime(report.sections[section][point][0]))
-    return ((value / value2) * 100)
+    percent = value / value2 * 100
+    print 'The percentage for point ' + str(point + 1) + ' out of ' + str(section) + ' and ' + str(section1) + ' is: ' + str(percent) + '% at ' + time.strftime("%a, %d %b %Y %H:%M:%S", time.localtime(report.sections[section][point][0]))
+    checkLimits(section, section1, percent, min_limit, max_limit)
+    return percent
 
+def checkLimits(section, section1, percent=None, min_limit=None, max_limit=None):
+    '''Checks if the percentage is within, below or exceeding the normal limits'''
+    if percent > max_limit:
+        print 'The average percentage of ' + str(section) + ' out of ' + str(section1) + ' is exceeding the normal range'
+    elif percent < min_limit:
+        print 'The average percentage of ' + str(section) + ' out of ' + str(section1) + ' is below the normal range'
+    else:
+        print 'The average percentage of ' + str(section) + ' out of ' + str(section1) + ' is within the normal range'
 
 
 
