@@ -26,12 +26,12 @@ class Report:
     def getData(self):
         '''open the URL and returns a dictionary representation of the object'''
         try:
-            json_data = json.load(urllib2.urlopen("http://messaging001.us-ec.adtech.com/render/?_salt=1395936062.612&target=alias%28stacked%28sumSeries%28stats.gauges.*.us-ec.adtech.com.webiface.dsps.adcom.sla_timeout_responses%29%29%2C%22SLA%20timeout%22%29&target=alias%28stacked%28sumSeries%28stats.gauges.*.us-ec.adtech.com.webiface.dsps.adcom.empty_responses%29%29%2C%22Empty%20Responses%22%29&target=alias%28stacked%28sumSeries%28stats.gauges.*.us-ec.adtech.com.webiface.dsps.adcom.bids%29%29%2C%22Bid%20Response%22%29&target=alias%28stacked%28sumSeries%28stats.gauges.*.us-ec.adtech.com.webiface.dsps.adcom.error_responses%29%29%2C%22Error%20Responses%22%29&target=alias%28stacked%28sumSeries%28stats.gauges.*.us-ec.adtech.com.webiface.dsps.adcom.internal_errors%29%29%2C%22Internal%20Errors%22%29&target=alias%28dashed%28lineWidth%28sumSeries%28stats.gauges.*.us-ec.adtech.com.webiface.dsps.adcom.dsp_requests%29%2C2%29%29%2C%22Total%20DSP%20Requests%22%29&target=alias%28dashed%28lineWidth%28sumSeries%28stats.gauges.*.us-ec.adtech.com.webiface.dsps.adcom.uss_retrieve_misses%29%2C2%29%29%2C%22Unmatched%20requests%22%29&width=586&height=308&format=json"))
-            return json_data
-        except urllib2.URLError:
-            print "URL Error Occurred"
-        except urllib2.HTTPError:
-            print "HTTP Error Occurred"
+            json_data = open('C:\Users\darrendirl\Downloads\json script')
+            data = json.load(json_data)
+            return data
+        except:
+            print "Error Occurred"
+
     
     def split(self):
         '''splits the json file into its different sections, creating a dictionary representation of each section'''
