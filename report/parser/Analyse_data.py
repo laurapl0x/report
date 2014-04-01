@@ -9,7 +9,7 @@ def calculateAverages(section, report):
     '''Calculates the average value of occurrences in the specified section'''
     total = getTotal(section, report)
     avg = total / report.size
-    print section + " average value is: " + str(avg)
+    return avg
 
 def getTotal(section, report):
     '''Calculates and returns the total value of occurrences in the specified section'''
@@ -26,7 +26,7 @@ def findMins(section, report):
             minimum = value
         elif minimum > value:
             minimum = value
-    print section + " minimum value = " + str(minimum)
+    return minimum
             
 def findMaxs(section, report):
     '''find the maximum value in the specified section'''
@@ -36,7 +36,7 @@ def findMaxs(section, report):
             maximum = value
         elif maximum < value:
             maximum = value
-    print section + " maximum value = " + str(maximum)
+    return maximum
           
 def getPercentage(section, section1, report):
     '''returns the percentage of one section compared with another section'''
